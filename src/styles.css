@@ -1,0 +1,6 @@
+/* You can add global styles to this file, and also import other style files */
+html, body {
+    height: 100%;  /* Garante que o html e body ocupem toda a altura da viewport */
+    margin: 0;     /* Remove qualquer margem padrão */
+    padding: 0;    /* Remove qualquer padding padrão */
+  }

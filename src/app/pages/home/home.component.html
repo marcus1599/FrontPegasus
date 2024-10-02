@@ -1,0 +1,21 @@
+<app-header></app-header>
+<div class = "home-layout">
+    
+    <div class="aviso-container">
+        <app-aviso></app-aviso>
+        
+    </div>
+    <div class="card-container">
+        <div class="cards-container">
+            <app-card *ngFor="let card of cards" [title]="card.title" [content]="card.content"></app-card>
+        </div>
+        <div class = aside>
+            <div class="recomend-container">
+                <app-recomended *ngFor="let recomend of recomends" [title]="recomend.title"></app-recomended>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
