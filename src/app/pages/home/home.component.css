@@ -1,0 +1,39 @@
+.home-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content-container {
+    display: flex;
+    width: 100%;
+    max-width: 1200px; /* Limita a largura máxima da área de conteúdo */
+    justify-content: center;
+    gap: 20px;
+}
+
+.aviso-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.cards-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    background-color: #1a45a3; /* Cor de fundo do container de cards */
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%; /* Ocupará o máximo de espaço disponível */
+}
+
+.aside {
+    background-color: aqua;
+    margin-left: auto; /* Empurra o aside para a direita */
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 300px; /* Define a largura máxima para a barra lateral */
+}
