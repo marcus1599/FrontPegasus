@@ -1,59 +1,81 @@
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: rgb(26, 69, 163);
-    color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: rgb(26, 69, 163);
+  color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 
-  }
-  
-  .logo img {
-    height: 50px; 
-  }
-  
-  .nav-links ul {
-    list-style-type: none;
-    display: flex;
-    gap: 20px;
-  }
-  
-  .nav-links ul li {
-    display: inline;
-  }
-  
-  .nav-links a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 18px;
-  }
-  
-  .auth-buttons {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .auth-buttons .btn-login,
-  .auth-buttons .btn-register {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .auth-buttons .btn-login {
-    background-color: #4CAF50;
-    color: white;
-  }
-  
-  .auth-buttons .btn-register {
-    background-color: #008CBA; 
-    color: white;
-  }
-  
-  .auth-buttons .btn-login:hover,
-  .auth-buttons .btn-register:hover {
-    opacity: 0.8;
-  }
-  
+.logo img {
+  height: 50px;
+  border-radius: 30%;
+}
+
+.nav-links ul {
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links ul li {
+  display: inline;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Estilo para o input de pesquisa */
+.auth-buttons input[type="text"] {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  width: 200px; /* Largura inicial */
+  transition: width 0.4s ease-in-out; /* Transição suave */
+}
+
+.auth-buttons input[type="text"]:focus {
+  outline: none;
+  width: 300px; /* Largura ao focar */
+  border-color: #008CBA; /* Cor da borda ao focar */
+}
+
+.auth-buttons .btn-login,
+.auth-buttons .btn-register {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.auth-buttons .btn-login {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.auth-buttons .btn-register {
+  background-color: #008CBA;
+  color: white;
+}
+
+.auth-buttons .btn-login:hover,
+.auth-buttons .btn-register:hover {
+  opacity: 0.8;
+}

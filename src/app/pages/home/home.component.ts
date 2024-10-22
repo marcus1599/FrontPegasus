@@ -4,6 +4,8 @@ import { CardComponent } from '../../components/card/card.component';
 import { NgFor } from '@angular/common';
 import { AvisoComponent } from '../../components/aviso/aviso.component';
 import { RecomendedComponent } from '../../components/recomended/recomended.component';
+import { Post } from '../../models/post';
+import { PostService } from '../../services/post.service';
 
 @Component({
   selector: 'app-home',
@@ -14,11 +16,7 @@ import { RecomendedComponent } from '../../components/recomended/recomended.comp
 })
 export class HomeComponent {
 
-  cards = [
-    { title: 'Artigo 1', content: 'Resumo do artigo 1' },
-    { title: 'Artigo 2', content: 'Resumo do artigo 2' },
-    { title: 'Artigo 3', content: 'Resumo do artigo 3' },
-    { title: 'Artigo 4', content: 'Resumo do artigo 4' }
+  cards : Post[]= [
   ];
   recomends = [
     { title: 'Artigo 1' },
@@ -26,5 +24,10 @@ export class HomeComponent {
     { title: 'Artigo 3' },
     { title: 'Artigo 4' }
   ];
+  postService : PostService;
+  constructor(){
+    this.postService = new PostService();
+    this.cards = this.postService.findaAll();
+  }
 
 }

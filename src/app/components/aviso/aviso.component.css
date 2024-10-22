@@ -2,16 +2,25 @@
     background-color:darkslategray;
     text-align: justify;
     padding: 20px;
-    width: 300px;
-    height: 300px;
     border-radius: 8px;
     border-color: blue;
     justify-content: center;
-    
 }
 h3{
     color: #f5eeee;
 }
 p{
     color: #f5eeee;
+}.container {
+    text-align: center; /* Centraliza o texto e a imagem */
+}
+.welcome-text {
+    display: inline-block; /* Permite que a imagem flutue ao lado do texto */
+}
+
+.welcome-icon {
+    float: left; /* Faz a imagem flutuar à esquerda do texto */
+    margin-right: 10px; /* Adiciona espaço entre a imagem e o texto */
+    width: 50px; /* Ajuste o tamanho conforme necessário */
+    height: auto; /* Mantém a proporção da imagem */
 }
