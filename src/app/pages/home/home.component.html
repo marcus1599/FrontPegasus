@@ -8,7 +8,7 @@
     <div class="content-container">
         <!-- Cards ficam no centro -->
         <div class="cards-container">
-            <app-card *ngFor="let card of cards" [title]="card.title" [content]="card.resume"></app-card>
+            <app-card *ngFor="let card of cards | async" [title]="card.nome" [content]="card.descricao"></app-card>
         </div>
 
         <!-- Recomendações ficam à direita -->

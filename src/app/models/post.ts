@@ -1,5 +1,5 @@
 export interface Post{
-    _id :string;
-    title:string;
-    resume:string;
+    id_postagem :string;
+    nome:string;
+    descricao:string;
 }

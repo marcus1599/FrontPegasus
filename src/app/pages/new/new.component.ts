@@ -24,6 +24,7 @@ export class NewComponent {
 
   onSubmit() {
     // Aqui você pode enviar os dados do post para a API ou manipulá-los conforme necessário
+
     
     console.log('Post criado:', this.post);
     // Limpa os campos após o envio, se necessário
