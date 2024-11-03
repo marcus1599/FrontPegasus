@@ -3,18 +3,14 @@
     <form (ngSubmit)="onSubmit()" #postForm="ngForm">
         <div>
             <label for="title">Título:</label>
-            <input type="text" id="title" name="title" [(ngModel)]="post.title" required>
+            <input type="text" id="title" name="title" [(ngModel)]="post.nome" required>
         </div>
 
         <div>
             <label for="summary">Resumo:</label>
-            <textarea id="summary"  name="summary" [(ngModel)]="post.summary" required></textarea>
+            <textarea id="summary"  name="summary" [(ngModel)]="post.descricao" required></textarea>
         </div>
 
-        <div>
-            <label for="image">Imagem:</label>
-            <input type="file" id="image" (change)="onImageSelected($event)" required>
-        </div>
 
         <button type="submit" [disabled]="!postForm.form.valid">Criar Post</button>
     </form>

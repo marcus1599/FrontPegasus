@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { PostService } from '../../services/post.service';
 
 @Component({
   selector: 'app-new',
@@ -8,26 +9,30 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './new.component.html',
   styleUrl: './new.component.css'
 })
+
 export class NewComponent {
+
+
+  constructor(private service: PostService) {}
+
+ 
   post = {
-    title: '',
-    summary: '',
-    image: null as File | null // Atualizando o tipo da propriedade
+    id_postagem:'',
+    nome: '',
+    descricao: '',
+   
   };
 
   onImageSelected(event: Event) {
-    const file = (event.target as HTMLInputElement).files?.[0];
-    if (file) {
-      this.post.image = file; // Armazena a imagem selecionada
-    }
+   
   }
 
   onSubmit() {
     // Aqui você pode enviar os dados do post para a API ou manipulá-los conforme necessário
 
-    
+    this.service.save(this.post).subscribe(result=>console.log(result));
     console.log('Post criado:', this.post);
     // Limpa os campos após o envio, se necessário
-    this.post = { title: '', summary: '', image: null }; // Reinicia os campos
+    this.post = {  id_postagem:'',nome: '', descricao: '' }; // Reinicia os campos
   }
 }

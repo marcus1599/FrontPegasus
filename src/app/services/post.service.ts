@@ -8,7 +8,7 @@ import { first, tap } from 'rxjs';
 })
 export class PostService {
 
-  private readonly API = '/Postagem/v1';
+  private readonly API = '/Postagem/v1/';
 
   constructor(private httpclient: HttpClient){
 
@@ -18,6 +18,11 @@ export class PostService {
     return this.httpclient.get<Post[]>(this.API).pipe(
       first(),
       tap(posts => console.log(posts)));
+  }
+
+  save(record : Post){
+
+    return this.httpclient.post<Post>(`${this.API}/adicionar`,record).pipe(first());
   }
  
 }
