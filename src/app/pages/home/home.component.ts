@@ -36,7 +36,7 @@ export class HomeComponent {
   ];
 
   constructor(private postService: PostService) {
-    this.cards = this.postService.findaAll()
+    this.cards = this.postService.findAll()
     .pipe(
       catchError(error=>{
         console.log(error);
