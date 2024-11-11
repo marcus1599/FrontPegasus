@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -22,14 +22,14 @@ export class AuthService {
   }
 
   // Realiza login
-  login(username: string, password: string) {
-    return this.http.post<any>(`${this.apiUrl}/login`, { username, password })
+  login(email: string, password: string) {
+    return this.http.post<any>(`${this.apiUrl}/login`, { email:email, senha:password })
       .subscribe(data => {
         // Certifique-se de que 'data' contém 'token'
         if (data && data.token) {
           localStorage.setItem('user', JSON.stringify(data));
           this.currentUserSubject.next(data);
-          this.router.navigate(['/dashboard']); // Redireciona para o dashboard
+          this.router.navigate(['/']); // Redireciona para o dashboard
         } else {
           // Tratar o caso em que o token não está presente na resposta
           console.error('Token não encontrado na resposta do login');
@@ -59,4 +59,14 @@ export class AuthService {
     }
     return headers;
   }
+  register(username: string ,email: string, password: string, biography: string) {
+    return this.http.post<any>(`${this.apiUrl}/register`, { username: username,
+      email: email,
+      senha: password,
+      biografia: biography })
+      .pipe(
+        tap(() => this.router.navigate(['/login']))  // Navega para a página de login após o registro
+      );
+}
+
 }

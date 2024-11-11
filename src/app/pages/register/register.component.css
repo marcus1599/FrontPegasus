@@ -1,0 +1,43 @@
+
+.register-container {
+    max-width: 400px;
+    margin: auto;
+    padding: 1em;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  .register-container h2 {
+    text-align: center;
+    margin-bottom: 1em;
+  }
+  
+  .register-container label {
+    display: block;
+    margin-top: 0.5em;
+  }
+  
+  .register-container input,
+  .register-container textarea {
+    width: 100%;
+    padding: 0.5em;
+    margin-top: 0.2em;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  .register-container button {
+    width: 100%;
+    padding: 0.7em;
+    margin-top: 1em;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .register-container button:hover {
+    background-color: #0056b3;
+  }
+  

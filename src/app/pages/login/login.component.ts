@@ -10,13 +10,13 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  username: string = '';
+  email: string = '';
   password: string = '';
 
   constructor(private authService: AuthService) {}
 
   login() {
-    this.authService.login(this.username, this.password);
+    this.authService.login(this.email, this.password);
   }
 
 }
