@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent {
 
-  username = '';
+  usarname = '';
   email = '';
   password = '';
   biography = '';
@@ -20,10 +20,10 @@ export class RegisterComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   onRegister() {
-    this.authService.register(this.username, this.email, this.password, this.biography).subscribe({
+    this.authService.register(this.usarname, this.email, this.password, this.biography).subscribe({
       next: () => {
         console.log("Registro bem-sucedido");
-        this.router.navigate(['/login']); // Redireciona para a página de login após o registro
+        this.router.navigate(['/login']);
       },
       error: (err) => console.error("Erro no registro", err)
     });

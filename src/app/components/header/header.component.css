@@ -14,68 +14,73 @@ header {
 }
 
 .logo img {
-  height: 50px;
-  border-radius: 30%;
+  width: 50px;
 }
 
 .nav-links ul {
-  list-style-type: none;
   display: flex;
+  list-style: none;
   gap: 20px;
-}
-
-.nav-links ul li {
-  display: inline;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-links a {
-  color: #fff;
   text-decoration: none;
-  font-size: 18px;
+  color: #fffcfc;
 }
 
 .auth-buttons {
   display: flex;
-  gap: 10px;
   align-items: center;
+  gap: 10px;
 }
 
-/* Estilo para o input de pesquisa */
 .auth-buttons input[type="text"] {
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-  width: 200px; /* Largura inicial */
-  transition: width 0.4s ease-in-out; /* Transição suave */
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
 
-.auth-buttons input[type="text"]:focus {
-  outline: none;
-  width: 300px; /* Largura ao focar */
-  border-color: #008CBA; /* Cor da borda ao focar */
-}
-
-.auth-buttons .btn-login,
-.auth-buttons .btn-register {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
+.user-avatar {
   cursor: pointer;
-  font-size: 16px;
+  position: relative;
 }
 
-.auth-buttons .btn-login {
-  background-color: #4CAF50;
+.avatar-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+}
+
+.user-menu {
+  position: absolute;
+  right: 0;
+  top: 50px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  text-align: center;
+  z-index: 1000;
+}
+
+.user-menu p {
+  margin: 5px 0;
+}
+
+.user-menu button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #007bff;
   color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-.auth-buttons .btn-register {
-  background-color: #008CBA;
-  color: white;
-}
-
-.auth-buttons .btn-login:hover,
-.auth-buttons .btn-register:hover {
-  opacity: 0.8;
+.user-menu button:hover {
+  background-color: #0056b3;
 }

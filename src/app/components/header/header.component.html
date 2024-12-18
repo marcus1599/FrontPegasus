@@ -2,18 +2,41 @@
   <div class="logo">
     <img src="assets/Pegaso.jpg" alt="Logo do site">
   </div>
-  
+
   <nav class="nav-links">
     <ul>
       <li><a routerLink="/">Home</a></li>
       <li><a routerLink="/new">Criar Post</a></li>
     </ul>
   </nav>
-  
+
   <div class="auth-buttons">
     <input type="text" placeholder="Pesquisar...">
-    <!-- Adiciona o routerLink para o botão de login e registro -->
-    <button class="btn-login" routerLink="/login">Login</button>
-    <button class="btn-register" routerLink="/register">Registrar</button>
+
+    <!-- Avatar do usuário -->
+    <div class="user-avatar" (click)="toggleUserMenu()">
+      <img
+        *ngIf="isAuthenticated; else guestAvatar"
+        [src]="userAvatar"
+        alt="Avatar do Usuário"
+        class="avatar-image"
+      />
+      <ng-template #guestAvatar>
+        <img src="assets/default-avatar.png" alt="Avatar Padrão" class="avatar-image" />
+      </ng-template>
+    </div>
+
+    <!-- Menu dropdown -->
+    <div *ngIf="showUserMenu" class="user-menu">
+      <ng-container *ngIf="isAuthenticated; else guestMenu">
+        <p>{{ user?.name }}</p>
+        <p>{{ user?.email }}</p>
+        <button (click)="logout()">Sair</button>
+      </ng-container>
+      <ng-template #guestMenu>
+        <button routerLink="/login">Login</button>
+        <button routerLink="/register">Registrar</button>
+      </ng-template>
+    </div>
   </div>
 </header>

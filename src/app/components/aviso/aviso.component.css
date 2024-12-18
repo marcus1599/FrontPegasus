@@ -1,26 +1,31 @@
-.container{
-    background-color:darkslategray;
+.container {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #1a45a3), 
+                url('/src/assets/Pegaso.jpg') no-repeat center center;
+    background-size: cover; /* Ajusta a imagem para cobrir toda a área */
     text-align: justify;
     padding: 20px;
     border-radius: 8px;
-    border-color: blue;
+    border: 2px solid blue;
     justify-content: center;
+    color: #000000; /* Cor do texto */
+    position: relative;
 }
-h3{
-    color: #f5eeee;
+
+h3 {
+    color: #f5eeee; /* Cor do título */
 }
-p{
-    color: #f5eeee;
-}.container {
-    text-align: center; /* Centraliza o texto e a imagem */
+
+p {
+    color: #f5eeee; /* Cor do parágrafo */
 }
+
 .welcome-text {
-    display: inline-block; /* Permite que a imagem flutue ao lado do texto */
+    display: inline-block; /* Permite que a imagem e o texto fiquem lado a lado */
 }
 
 .welcome-icon {
-    float: left; /* Faz a imagem flutuar à esquerda do texto */
-    margin-right: 10px; /* Adiciona espaço entre a imagem e o texto */
-    width: 50px; /* Ajuste o tamanho conforme necessário */
+    float: left; /* Alinha a imagem à esquerda */
+    margin-right: 10px; /* Espaço entre imagem e texto */
+    width: 50px; /* Define o tamanho da imagem */
     height: auto; /* Mantém a proporção da imagem */
 }

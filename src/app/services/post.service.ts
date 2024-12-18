@@ -15,8 +15,7 @@ export class PostService {
   // Método para pegar todos os posts
   findAll() {
     return this.httpclient.get<Post[]>(this.API).pipe(
-      first(),
-      tap(posts => console.log(posts))
+      first()
     );
   }
 
