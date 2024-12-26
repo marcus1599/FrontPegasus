@@ -11,6 +11,7 @@
     width: 100%;
     max-width: 1200px; /* Limita a largura máxima da área de conteúdo */
     justify-content: center;
+    
     gap: 20px;
 }
 

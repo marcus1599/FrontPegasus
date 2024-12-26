@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PostService } from '../../services/post.service';
+import { Post } from '../../models/post';
 
 @Component({
   selector: 'app-new',
@@ -12,27 +13,30 @@ import { PostService } from '../../services/post.service';
 
 export class NewComponent {
 
-
   constructor(private service: PostService) {}
 
- 
-  post = {
-    id_postagem:'',
+  post: Post = {
     nome: '',
     descricao: '',
-   
+    data_criacao: '' 
   };
 
   onImageSelected(event: Event) {
-   
+    // Lógica para manipular imagens, se necessário
   }
 
   onSubmit() {
-    // Aqui você pode enviar os dados do post para a API ou manipulá-los conforme necessário
 
-    this.service.save(this.post).subscribe(result=>console.log(result));
+    if (!this.post.data_criacao) {
+      this.post.data_criacao = new Date().toISOString(); // Formato ISO da data
+    }
+
+    this.service.save(this.post).subscribe(result => {
+      console.log(result); 
+    });
     console.log('Post criado:', this.post);
-    // Limpa os campos após o envio, se necessário
-    this.post = {  id_postagem:'',nome: '', descricao: '' }; // Reinicia os campos
+
+    
+    this.post = { nome: '', descricao: '', data_criacao: '' }; 
   }
 }

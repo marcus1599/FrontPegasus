@@ -4,6 +4,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { NewComponent } from './pages/new/new.component';  // Adicionando NewComponent
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from "./components/header/header.component";
+import { FooterComponent } from "./components/footer/footer.component";
 
 // Definindo as rotas diretamente no arquivo
 const routes: Routes = [
@@ -14,7 +15,7 @@ const routes: Routes = [
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterModule, FormsModule, HeaderComponent],  // Incluindo o RouterModule diretamente
+  imports: [RouterOutlet, RouterModule, FormsModule, HeaderComponent, FooterComponent],  // Incluindo o RouterModule diretamente
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })

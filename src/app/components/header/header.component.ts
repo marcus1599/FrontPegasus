@@ -24,12 +24,14 @@ export class HeaderComponent {
     this.isAuthenticated = this.authService.isAuthenticated();
     if (this.isAuthenticated) {
       this.user = this.authService.currentUserValue;
+      console.log(this.user);
       this.userAvatar = this.user?.avatar || 'assets/default-avatar.png'; // URL do avatar do usuário
     }
   }
 
   toggleUserMenu(): void {
     this.showUserMenu = !this.showUserMenu;
+    this.isAuthenticated = this.authService.isAuthenticated();
   }
 
   logout(): void {

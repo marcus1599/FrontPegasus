@@ -1,5 +1,7 @@
-export interface Post{
-    id_postagem :string;
-    nome:string;
-    descricao:string;
-}
+export interface Post {
+    id_postagem?: number;
+    nome: string;
+    descricao: string;
+    data_criacao?: string; 
+ }
+  

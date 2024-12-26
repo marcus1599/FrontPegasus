@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Post } from '../models/post';
-import { first, tap } from 'rxjs';
+import { first } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +21,11 @@ export class PostService {
 
   // Método para salvar um post
   save(record: Post) {
+    // Aqui você pode definir manualmente a data_criacao se necessário
+    if (!record.data_criacao) {
+      record.data_criacao = new Date().toISOString(); // Adiciona a data de criação, se não existir
+    }
+
     return this.httpclient.post<Post>(`${this.API}/adicionar`, record, { headers: this.getHeaders() }).pipe(first());
   }
 
@@ -28,11 +33,13 @@ export class PostService {
   private getHeaders(): HttpHeaders {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     const token = user.token; // Pegue o token do objeto 'user'
-  
+
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+
     if (token) {
-      return new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    } else {
-      return new HttpHeaders();
+      headers = headers.set('Authorization', `Bearer ${token}`);
     }
+
+    return headers;
   }
 }

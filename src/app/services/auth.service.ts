@@ -93,7 +93,7 @@ export class AuthService {
   // Realiza registro
   register(username: string, email: string, password: string, biography: string) {
     return this.http.post<any>(`${this.apiUrl}/register`, {
-      nome: username,
+      username: username,
       email: email,
       senha: password,
       biografia: biography
