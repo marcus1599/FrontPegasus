@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:8080/auth'; // URL do backend para login
+  private apiUrl = 'https://pegasoapi.onrender.com/auth'; // URL do backend para login
   private currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<any>;
 

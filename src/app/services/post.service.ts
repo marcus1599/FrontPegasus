@@ -8,7 +8,7 @@ import { first } from 'rxjs';
 })
 export class PostService {
 
-  private readonly API = 'http://localhost:8080/Postagem/v1';  // Certifique-se de que o endpoint está correto
+  private readonly API = 'https://pegasoapi.onrender.com/Postagem/v1';  // Certifique-se de que o endpoint está correto
 
   constructor(private httpclient: HttpClient) { }
 
@@ -21,7 +21,7 @@ export class PostService {
 
   // Método para salvar um post
   save(record: Post) {
-    // Aqui você pode definir manualmente a data_criacao se necessário
+    
     if (!record.data_criacao) {
       record.data_criacao = new Date().toISOString(); // Adiciona a data de criação, se não existir
     }
