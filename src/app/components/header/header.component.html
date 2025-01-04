@@ -29,6 +29,18 @@
     <!-- Menu dropdown -->
     <div *ngIf="showUserMenu" class="user-menu">
       <ng-container *ngIf="isAuthenticated; else guestMenu">
+
+        <div class="user-avatar">
+          <img
+            *ngIf="isAuthenticated; else guestAvatar"
+            [src]="userAvatar"
+            alt="Avatar do Usuário"
+            class="avatar-image"
+          />
+          <ng-template #guestAvatar>
+            <img src="assets/default-avatar.png" alt="Avatar Padrão" class="avatar-image" />
+          </ng-template>
+        </div>
         <p>{{ user?.name }}</p>
         <p>{{ user?.email }}</p>
         <button (click)="logout()">Sair</button>

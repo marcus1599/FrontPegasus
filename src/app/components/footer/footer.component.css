@@ -1,31 +1,33 @@
 footer {
-    background-color: #333;
+    background-color: rgb(26, 69, 163);
     color: white;
     text-align: center;
     padding: 20px;
     position: relative;
     width: 100%;
     bottom: 0;
-  }
-  
-  footer p {
+    box-sizing: border-box; /* Garante que o padding não altere a largura do footer */
+    margin: 0; /* Remove qualquer margem que possa estar causando a rolagem */
+    overflow-x: hidden; /* Evita qualquer transbordamento horizontal */
+}
+
+footer p {
     margin: 5px 0;
-  }
-  
-  footer a {
+}
+
+footer a {
     color: #fff;
     text-decoration: none;
-  }
-  
-  footer a:hover {
+}
+
+footer a:hover {
     text-decoration: underline;
-  }
-  
-  .stacks-for-devs {
+}
+
+.stacks-for-devs {
     margin-top: 15px;
-  }
-  
-  .social-links {
+}
+
+.social-links {
     margin-top: 10px;
-  }
-  
+}

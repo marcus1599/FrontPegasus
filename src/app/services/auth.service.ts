@@ -28,7 +28,13 @@ export class AuthService {
 
   // Retorna o usuário atual
   public get currentUserValue(): any {
-    return this.currentUserSubject.value;
+    const user = this.currentUserSubject.value;
+    if (user && user.token) {
+      return user;  // Retorna o usuário completo
+    } else {
+      console.log("Usuário não autenticado.");
+      return null;
+    }
   }
 
   // Realiza login
@@ -36,8 +42,9 @@ export class AuthService {
     return this.http.post<any>(`${this.apiUrl}/login`, { email: email, senha: password })
       .subscribe(data => {
         if (data && data.token) {
+          // Armazena todos os dados, incluindo token, name, email, avatar
           if (this.isLocalStorageAvailable()) {
-            localStorage.setItem('user', JSON.stringify(data));
+            localStorage.setItem('user', JSON.stringify(data)); // Armazena todos os dados
           }
           this.currentUserSubject.next(data);
           this.router.navigate(['/']);
@@ -55,7 +62,7 @@ export class AuthService {
           if (this.isLocalStorageAvailable()) {
             localStorage.setItem('user', JSON.stringify(data));
           }
-          this.currentUserSubject.next(data);
+          this.currentUserSubject.next(data); // Atualiza o usuário
           this.router.navigate(['/']);
         } else {
           console.error('Token não encontrado na resposta do login com Google');
@@ -66,18 +73,17 @@ export class AuthService {
   // Realiza logout
   logout() {
     if (this.isLocalStorageAvailable()) {
-      localStorage.removeItem('user');
+      localStorage.removeItem('user'); // Remove o usuário do localStorage
     }
-    this.currentUserSubject.next(null);
-    this.router.navigate(['/login']); // Redireciona para o login
+    this.currentUserSubject.next(null); // Atualiza o BehaviorSubject para null
+    this.router.navigate(['/login']); // Redireciona para a página de login
   }
 
   // Verifica se o usuário está autenticado
   isAuthenticated(): boolean {
-    if (this.isLocalStorageAvailable()) {
-      return !!localStorage.getItem('user');
-    }
-    return false;
+    // Verifica no localStorage se há um token
+    const user = this.currentUserValue;
+    return user !== null; // Se o usuário existir, está autenticado
   }
 
   // Adiciona o cabeçalho de autorização com o token JWT
@@ -98,7 +104,7 @@ export class AuthService {
       senha: password,
       biografia: biography
     }).pipe(
-      tap(() => this.router.navigate(['/login'])) // Navega para a página de login após o registro
+      tap(() => this.router.navigate(['/login'])) 
     );
   }
 }

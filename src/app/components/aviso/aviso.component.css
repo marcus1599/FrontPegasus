@@ -5,17 +5,22 @@
     text-align: justify;
     padding: 20px;
     border-radius: 8px;
-    justify-content: center;
-   
     border: 2px solid blue;
-    justify-content: center;
     color: #000000; /* Cor do texto */
     position: relative;
+    
+    /* Limita a largura do container a 90% da largura da tela (ajuste conforme necessário) */
+    width: 90%; 
+    
+    /* Defina uma largura máxima para o container (exemplo: 1200px) */
+    max-width: 1200px;
+    
+    /* Centraliza o container na tela */
+    margin: 0 auto;
 }
 
 h3 {
-    color: #f5eeee; /* Cor do título */
-    
+    color: #000000; /* Cor do título */
 }
 
 p {
