@@ -1,1 +1,52 @@
-<p>my-posts works!</p>
+<div class="my-posts-container">
+    <div class="header">
+      <button (click)="onCreateNewPost()" class="new-post-btn">Novo Post</button>
+    </div>
+  
+    <div class="posts-grid">
+      <app-post-card
+        *ngFor="let post of paginatedPosts"
+        class="post-card"
+        [post]="post"
+        (edit)="onEditPost($event)"
+        (delete)="onDeletePost($event)">
+      </app-post-card>
+    </div>
+  
+    <!-- Paginação -->
+    <div class="pagination">
+      <button 
+        class="pagination-btn" 
+        [disabled]="currentPage === 1" 
+        (click)="changePage(currentPage - 1)">
+        Anterior
+      </button>
+      <span>Página {{ currentPage }} de {{ totalPages }}</span>
+      <button 
+        class="pagination-btn" 
+        [disabled]="currentPage === totalPages" 
+        (click)="changePage(currentPage + 1)">
+        Próxima
+      </button>
+    </div>
+  
+    <!-- Modal para criar/editar posts -->
+    <div class="modal" *ngIf="isModalOpen">
+      <div class="modal-content">
+        <h2>{{ editPost ? 'Editar Post' : 'Novo Post' }}</h2>
+        <form (submit)="onSubmitPost()">
+          <label for="title">Título</label>
+          <input id="title" [(ngModel)]="currentPost.title" required />
+  
+          <label for="content">Conteúdo</label>
+          <textarea id="content" [(ngModel)]="currentPost.content" rows="5" required></textarea>
+  
+          <div class="actions">
+            <button type="submit">Salvar</button>
+            <button type="button" (click)="onCloseModal()">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
