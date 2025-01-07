@@ -1,12 +1,12 @@
 .container {
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #1a45a3), 
-                url('/assets/Pegaso.jpg') no-repeat center center;
+                url('/assets/logo.jpeg') no-repeat center center;
     background-size: cover; /* Ajusta a imagem para cobrir toda a área */
     text-align: justify;
     padding: 20px;
     border-radius: 8px;
     border: 2px solid blue;
-    color: #000000; /* Cor do texto */
+    color: #ffffff; /* Cor do texto */
     position: relative;
     
     /* Limita a largura do container a 90% da largura da tela (ajuste conforme necessário) */
@@ -20,7 +20,7 @@
 }
 
 h3 {
-    color: #000000; /* Cor do título */
+    color: #ffffff; /* Cor do título */
 }
 
 p {

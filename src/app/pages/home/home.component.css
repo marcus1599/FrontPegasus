@@ -3,7 +3,6 @@
     flex-direction: column;
     align-items: center;
     margin-top: 60px; /* Ajuste conforme a altura do seu cabeçalho */
-    
 }
 
 .content-container {
@@ -11,7 +10,6 @@
     width: 100%;
     max-width: 1200px; /* Limita a largura máxima da área de conteúdo */
     justify-content: center;
-    
     gap: 20px;
 }
 
@@ -43,4 +41,56 @@
     border-radius: 10px;
     max-width: 300px; /* Define a largura máxima para a barra lateral */
     margin-bottom: 20px;
+}
+
+/* Estilos responsivos */
+@media (max-width: 1024px) {
+    .content-container {
+        flex-wrap: wrap; /* Permite que os elementos quebrem linha em telas menores */
+        justify-content: center;
+    }
+
+    .aside {
+        margin-left: 0; /* Remove o espaçamento lateral para melhor ajuste */
+        max-width: 100%; /* O aside ocupa a largura total disponível */
+    }
+}
+
+@media (max-width: 768px) {
+    .home-layout {
+        margin-top: 40px; /* Ajusta a margem superior */
+    }
+
+    .content-container {
+        flex-direction: column; /* Organiza os elementos em coluna */
+        align-items: center;
+        gap: 15px; /* Reduz o espaçamento entre os elementos */
+    }
+
+    .cards-container {
+        padding: 15px; /* Reduz o padding interno */
+    }
+
+    .aside {
+        padding: 15px; /* Ajusta o padding do aside */
+    }
+}
+
+@media (max-width: 480px) {
+    .home-layout {
+        margin-top: 30px; /* Reduz ainda mais a margem superior */
+    }
+
+    .cards-container {
+        gap: 10px; /* Diminui o espaçamento entre os cards */
+        padding: 10px; /* Padding menor para dispositivos pequenos */
+    }
+
+    .aside {
+        padding: 10px; /* Padding menor para o aside */
+    }
+
+    .aviso-container {
+        padding: 5px; /* Ajusta o padding da área de aviso */
+    }
 }

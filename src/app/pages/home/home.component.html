@@ -10,6 +10,7 @@
     <div class="content-container">
         <!-- Cards ficam no centro -->
         <div class="cards-container">
+            <p></p>
             <app-card *ngFor="let card of cards | async" [title]="card.nome" [content]="card.descricao" [created]="card.data_criacao"></app-card>
         </div>
  

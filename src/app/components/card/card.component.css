@@ -7,8 +7,14 @@
   padding: 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  width: 80ch;
+  width: 100h; /* Largura padrão */
+  min-width: 100ch; /* Largura mínima */
+  min-height: 200px; /* Altura mínima */
+  max-height: 400px; /* Altura máxima opcional */
   color: #fff; /* Ajuste a cor do texto para garantir contraste */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Garante espaçamento adequado dos elementos */
 }
 
 .card:hover {
@@ -38,4 +44,42 @@
 .info {
   display: flex;
   gap: 10px;
+}
+
+/* Estilos responsivos */
+@media (max-width: 1024px) {
+  .card {
+    width: 60ch; /* Ajusta a largura para dispositivos menores */
+    padding: 15px; /* Reduz o padding interno */
+    min-width: 50ch; /* Largura mínima ajustada */
+  }
+
+  .info {
+    flex-direction: column; /* Organiza as informações em coluna */
+    gap: 5px; /* Reduz o espaçamento entre os elementos */
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 90%; /* Faz o card ocupar 90% da largura da tela */
+    padding: 15px; /* Reduz o padding interno */
+    min-width: 70%; /* Define uma largura mínima */
+  }
+
+  .info {
+    gap: 5px; /* Reduz ainda mais o espaçamento entre os elementos */
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    width: 100%; /* Faz o card ocupar toda a largura disponível */
+    padding: 10px; /* Reduz o padding interno */
+    min-width: 90%; /* Mantém uma largura mínima proporcional */
+  }
+
+  .info {
+    gap: 3px; /* Ajuste final para dispositivos muito pequenos */
+  }
 }
