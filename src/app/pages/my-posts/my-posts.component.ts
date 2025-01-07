@@ -2,6 +2,7 @@ import { NgFor, NgForOf, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PostCardComponent } from "../../components/post-card/post-card.component";
+import { Router, RouterLink } from '@angular/router';
 
 interface Post {
   id: number;
@@ -31,12 +32,11 @@ export class MyPostsComponent {
   currentPage = 1;
   postsPerPage = 5;
   totalPages = Math.ceil(this.posts.length / this.postsPerPage);
-
   isModalOpen = false;
   editPost: Post | null = null;
   currentPost: Post = { id: 0, title: '', content: '' };
 
-  constructor() {
+  constructor(private router: Router) {
     this.updatePaginatedPosts();
   }
 
@@ -53,8 +53,8 @@ export class MyPostsComponent {
 
   onCreateNewPost() {
     this.currentPost = { id: 0, title: '', content: '' };
-    this.isModalOpen = true;
     this.editPost = null;
+    this.router.navigate(['/myposts']);
   }
 
   onEditPost(post: Post) {
