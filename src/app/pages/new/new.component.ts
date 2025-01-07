@@ -18,11 +18,16 @@ export class NewComponent {
   post: Post = {
     nome: '',
     descricao: '',
-    data_criacao: '' 
+    data_criacao: '',
+    imagem: null 
   };
 
-  onImageSelected(event: Event) {
-    // Lógica para manipular imagens, se necessário
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input?.files?.length) {
+      this.post.imagem = input.files[0]; // Armazena o arquivo da imagem
+      console.log('Imagem selecionada:', this.post.imagem);
+    }
   }
 
   onSubmit() {

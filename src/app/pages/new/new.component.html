@@ -8,9 +8,19 @@
 
         <div>
             <label for="summary">Resumo:</label>
-            <textarea id="summary"  name="summary" [(ngModel)]="post.descricao" required></textarea>
+            <textarea 
+                id="summary" 
+                name="summary" 
+                [(ngModel)]="post.descricao" 
+                required 
+                style="resize: none;">
+            </textarea>
         </div>
 
+        <div>
+            <label for="image">Imagem:</label>
+            <input type="file" id="image" name="image" (change)="onFileSelected($event)" accept="image/*">
+        </div>
 
         <button type="submit" [disabled]="!postForm.form.valid">Criar Post</button>
     </form>

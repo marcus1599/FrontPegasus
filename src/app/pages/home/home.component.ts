@@ -13,7 +13,7 @@ import { catchError, Observable, of } from 'rxjs';
   selector: 'app-home',
   standalone: true,
   imports: [
-    HeaderComponent, 
+   
     CardComponent, 
     NgFor, 
     CommonModule, 

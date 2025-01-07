@@ -10,9 +10,9 @@
     <div class="content-container">
         <!-- Cards ficam no centro -->
         <div class="cards-container">
-            <app-card *ngFor="let card of cards | async" [title]="card.nome" [content]="card.descricao"></app-card>
+            <app-card *ngFor="let card of cards | async" [title]="card.nome" [content]="card.descricao" [created]="card.data_criacao"></app-card>
         </div>
-
+ 
         <!-- Recomendações ficam à direita -->
         <aside class="aside">
             <div class="recomend-container">
