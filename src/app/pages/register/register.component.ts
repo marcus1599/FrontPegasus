@@ -8,11 +8,11 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [FormsModule],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  styleUrls: ['./register.component.css'] // Corrigido o nome 'styleUrl' para 'styleUrls'
 })
 export class RegisterComponent {
 
-  usarname = '';
+  username = ''; 
   email = '';
   password = '';
   biography = '';
@@ -20,7 +20,8 @@ export class RegisterComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   onRegister() {
-    this.authService.register(this.usarname, this.email, this.password, this.biography).subscribe({
+    console.log(this.username, this.email, this.password, this.biography);
+    this.authService.register(this.username, this.email, this.password, this.biography).subscribe({
       next: () => {
         console.log("Registro bem-sucedido");
         this.router.navigate(['/login']);

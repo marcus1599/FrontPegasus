@@ -98,12 +98,9 @@ export class AuthService {
 
   // Realiza registro
   register(username: string, email: string, password: string, biography: string) {
-    return this.http.post<any>(`${this.apiUrl}/register`, {
-      username: username,
-      email: email,
-      senha: password,
-      biografia: biography
-    }).pipe(
+   const body = {username, email, password, biography};
+   console.log(body);
+    return this.http.post<any>(`${this.apiUrl}/register`, body).pipe(
       tap(() => this.router.navigate(['/login'])) 
     );
   }
