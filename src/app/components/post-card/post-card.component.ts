@@ -1,18 +1,14 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Post } from '../../models/post';
 
-interface Post {
-  id: number;
-  title: string;
-  content: string;
-}
 
 @Component({
   selector: 'app-post-card',
   standalone: true,
   template: `
     <div class="post-card">
-      <h3>{{ post.title }}</h3>
-      <p>{{ post.content }}</p>
+      <h3>{{ post.nome }}</h3>
+      <p>{{ post.descricao }}</p>
       <div class="actions">
         <button (click)="onEdit()">Editar</button>
         <button (click)="onDelete()">Excluir</button>

@@ -36,10 +36,10 @@
         <h2>{{ editPost ? 'Editar Post' : 'Novo Post' }}</h2>
         <form (submit)="onSubmitPost()">
           <label for="title">Título</label>
-          <input id="title" [(ngModel)]="currentPost.title" required />
+          <input id="title" [(ngModel)]="currentPost.nome" required />
   
           <label for="content">Conteúdo</label>
-          <textarea id="content" [(ngModel)]="currentPost.content" rows="5" required></textarea>
+          <textarea id="content" [(ngModel)]="currentPost.descricao" rows="5" required></textarea>
   
           <div class="actions">
             <button type="submit">Salvar</button>

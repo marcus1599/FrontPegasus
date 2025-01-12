@@ -1,24 +1,35 @@
-
 <div class="home-layout">
     
     <div class="aviso-container">
         <app-aviso></app-aviso>
     </div>
 
-    
+  
     
     <div class="content-container">
-        <!-- Cards ficam no centro -->
-        <div class="cards-container">
-            <p></p>
-            <app-card *ngFor="let card of cards | async" [title]="card.nome" [content]="card.descricao" [created]="card.data_criacao"></app-card>
+
+        <div class="search-sort-container">
+            <input type="text" placeholder="Pesquisar..." (input)="onSearch($event)">
+            <button (click)="onSort('nome')">Ordenar por Nome</button>
+            <button (click)="onSort('data_criacao')">Ordenar por Data</button>
+        </div>
+        <!-- Posts ficam no centro -->
+        <div class="posts-container">
+            <app-card *ngFor="let post of filteredPosts" [title]="post?.nome" [content]="post?.descricao" [created]="post?.data_criacao"></app-card>
+        </div>
+
+        <!-- Paginação -->
+        <div class="pagination-container">
+            <button (click)="onPageChange(currentPage - 1)" [disabled]="currentPage === 1">Anterior</button>
+            <span>Página {{currentPage}}</span>
+            <button (click)="onPageChange(currentPage + 1)" [disabled]="filteredPosts.length < itemsPerPage">Próxima</button>
         </div>
  
         <!-- Recomendações ficam à direita -->
         <aside class="aside">
             <div class="recomend-container">
-                <P>Top 5</P>
-                <app-recomended *ngFor="let recomend of recomends" [title]="recomend.title"></app-recomended>
+                <p>Top 5</p>
+                <app-recomended *ngFor="let recomend of recomends" [title]="recomend?.title"></app-recomended>
             </div>
         </aside>
     </div>

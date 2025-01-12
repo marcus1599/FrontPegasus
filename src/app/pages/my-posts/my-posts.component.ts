@@ -3,12 +3,8 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PostCardComponent } from "../../components/post-card/post-card.component";
 import { Router, RouterLink } from '@angular/router';
-
-interface Post {
-  id: number;
-  title: string;
-  content: string;
-}
+import { PostService } from '../../services/post.service';
+import { Post } from '../../models/post';
 
 @Component({
   selector: 'app-my-posts',
@@ -19,14 +15,7 @@ interface Post {
 })
 export class MyPostsComponent {
   posts: Post[] = [
-    { id: 1, title: 'Primeiro Post', content: 'Conteúdo do primeiro post' },
-    { id: 2, title: 'Segundo Post', content: 'Conteúdo do segundo post' },
-    // Adicione mais posts para testar a paginação
-    ...Array.from({ length: 30 }, (_, i) => ({
-      id: i + 3,
-      title: `Post #${i + 3}`,
-      content: `Conteúdo do post #${i + 3}`,
-    })),
+   
   ];
   paginatedPosts: Post[] = [];
   currentPage = 1;
@@ -34,9 +23,27 @@ export class MyPostsComponent {
   totalPages = Math.ceil(this.posts.length / this.postsPerPage);
   isModalOpen = false;
   editPost: Post | null = null;
-  currentPost: Post = { id: 0, title: '', content: '' };
+  currentPost: Post = { id_postagem: 0, nome: '', descricao: '', data_criacao: new Date().toISOString() };
 
-  constructor(private router: Router) {
+
+
+  ngOnInit() {
+    this.loadPosts();
+    
+  }
+
+  loadPosts() {
+    this.postService.findAll().subscribe({
+      next: (data) => {
+        this.posts = data;
+      
+      },
+      error: (err) => console.error("Erro ao carregar posts", err)
+    });
+  }
+
+
+  constructor(private router: Router, private postService: PostService) {
     this.updatePaginatedPosts();
   }
 
@@ -52,9 +59,9 @@ export class MyPostsComponent {
   }
 
   onCreateNewPost() {
-    this.currentPost = { id: 0, title: '', content: '' };
+    this.currentPost = { id_postagem: 0, nome: '', descricao: '', data_criacao: new Date().toISOString() };
     this.editPost = null;
-    this.router.navigate(['/myposts']);
+    this.router.navigate(['/new']);
   }
 
   onEditPost(post: Post) {
@@ -64,7 +71,7 @@ export class MyPostsComponent {
   }
 
   onDeletePost(post: Post) {
-    this.posts = this.posts.filter((p) => p.id !== post.id);
+    this.posts = this.posts.filter((p) => p.id_postagem !== post.id_postagem);
     this.totalPages = Math.ceil(this.posts.length / this.postsPerPage);
     if (this.currentPage > this.totalPages) {
       this.currentPage = this.totalPages;
@@ -74,11 +81,11 @@ export class MyPostsComponent {
 
   onSubmitPost() {
     if (this.editPost) {
-      const index = this.posts.findIndex((p) => p.id === this.editPost?.id);
+      const index = this.posts.findIndex((p) => p.id_postagem === this.editPost?.id_postagem);
       this.posts[index] = { ...this.currentPost };
     } else {
-      const newId = Math.max(...this.posts.map((p) => p.id), 0) + 1;
-      this.posts.push({ ...this.currentPost, id: newId });
+      const newId = Math.max(...this.posts.map((p) => p.id_postagem ?? 0), 0) + 1;
+      this.posts.push({ ...this.currentPost, id_postagem: newId });
     }
     this.totalPages = Math.ceil(this.posts.length / this.postsPerPage);
     this.updatePaginatedPosts();

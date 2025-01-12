@@ -8,7 +8,7 @@ import { first } from 'rxjs';
 })
 export class PostService {
 
-  private readonly API = 'https://pegasoapi.onrender.com/Postagem/v1';  // Certifique-se de que o endpoint está correto
+  private readonly API = 'https://pegasoapi.onrender.com/Postagem/v1'; 
 
   constructor(private httpclient: HttpClient) { }
 

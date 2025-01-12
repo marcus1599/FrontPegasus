@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PostService } from '../../services/post.service';
+import { Router, RouterLink } from '@angular/router';
 import { Post } from '../../models/post';
 
 @Component({
@@ -13,7 +14,7 @@ import { Post } from '../../models/post';
 
 export class NewComponent {
 
-  constructor(private service: PostService) {}
+  constructor(private router: Router,private service: PostService) {}
 
   post: Post = {
     nome: '',
@@ -40,7 +41,8 @@ export class NewComponent {
       console.log(result); 
     });
     console.log('Post criado:', this.post);
-
+    this.router.navigate(['/my-posts']);
+    
     
     this.post = { nome: '', descricao: '', data_criacao: '' }; 
   }
