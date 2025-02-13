@@ -3,6 +3,7 @@ export interface Post {
     nome: string;
     descricao: string;
     data_criacao: string; 
-    imagem?: File | null;
+    usuario_id_usuario: number;
+    imagems?: File | null;
  }
   

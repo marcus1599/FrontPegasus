@@ -16,18 +16,20 @@ export class NewComponent {
 
   constructor(private router: Router,private service: PostService) {}
 
+  
   post: Post = {
     nome: '',
     descricao: '',
     data_criacao: '',
-    imagem: null 
+    usuario_id_usuario: 1,
+    imagems: null 
   };
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input?.files?.length) {
-      this.post.imagem = input.files[0]; // Armazena o arquivo da imagem
-      console.log('Imagem selecionada:', this.post.imagem);
+      this.post.imagems = input.files[0]; // Armazena o arquivo da imagem
+      console.log('Imagem selecionada:', this.post.imagems);
     }
   }
 
@@ -41,9 +43,9 @@ export class NewComponent {
       console.log(result); 
     });
     console.log('Post criado:', this.post);
-    this.router.navigate(['/my-posts']);
+    this.router.navigate(['/myposts']);
     
     
-    this.post = { nome: '', descricao: '', data_criacao: '' }; 
+    this.post = { nome: '', descricao: '', data_criacao: '',usuario_id_usuario: 0, imagems: null }; // Limpa o formulário
   }
 }

@@ -25,8 +25,16 @@ export class PostService {
     if (!record.data_criacao) {
       record.data_criacao = new Date().toISOString(); // Adiciona a data de criação, se não existir
     }
-
+    console.log(this.getHeaders());
     return this.httpclient.post<Post>(`${this.API}/adicionar`, record, { headers: this.getHeaders() }).pipe(first());
+  }
+
+  updatePost(post: Post) {
+    return this.httpclient.put<Post>(`${this.API}/Update/${post.id_postagem}`, post, { headers: this.getHeaders() }).pipe(first());
+  }
+
+  deletePost(id: number) {
+    return this.httpclient.delete<void>(`${this.API}/${id}`, { headers: this.getHeaders() }).pipe(first());
   }
 
   // Método para definir os headers

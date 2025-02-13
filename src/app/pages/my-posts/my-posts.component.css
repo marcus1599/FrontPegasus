@@ -2,7 +2,8 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    margin-bottom: 50px;
+    margin-top: 90px;
+    margin-bottom: 500px;
   }
   
   .header {
@@ -45,6 +46,7 @@
     min-height: 150px;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 500px;
   }
   
   .post-card:hover {
