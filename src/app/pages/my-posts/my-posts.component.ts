@@ -64,7 +64,7 @@ export class MyPostsComponent implements OnInit {
   }
 
   onCreateNewPost() {
-    this.currentPost = { id_postagem: 0, nome: '', descricao: '', usuario_id_usuario: 0, data_criacao: new Date().toISOString() };
+    this.currentPost = { id_postagem: undefined, nome: '', descricao: '', usuario_id_usuario: 0, data_criacao: new Date().toISOString() };
     this.isModalOpen = true;
     this.editPost = null;
     this.cdr.markForCheck();
@@ -103,8 +103,9 @@ export class MyPostsComponent implements OnInit {
           this.loadPosts();
           this.isModalOpen = false;
           this.cdr.markForCheck();
+          
         },
-        error: (err) => console.error("Erro ao criar post", err)
+        error: (err) => console.error("Erro ao criar post", err, this.currentPost)
       });
     }
   }

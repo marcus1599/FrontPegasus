@@ -3,7 +3,7 @@
 
   <div class="posts-list">
     <div *ngFor="let post of paginatedPosts">
-      <h3>{{ post.nome }}</h3>
+       <h3>{{ post.nome }}</h3>
       <p>{{ post.descricao }}</p>
       <button (click)="onEditPost(post)">Editar</button>
       <button (click)="onDeletePost(post)">Excluir</button>
@@ -22,7 +22,7 @@
       <h2>{{ editPost ? 'Editar Post' : 'Novo Post' }}</h2>
       <form (submit)="onSubmitPost()">
         <label for="title">Título</label>
-        <input id="title" [(ngModel)]="currentPost.nome" name="nome" required />
+        <input id="title" [(ngModel)]="currentPost.nome" name="title" required />
   
         <label for="content">Conteúdo</label>
         <textarea id="content" [(ngModel)]="currentPost.descricao" name="descricao" rows="5" required></textarea>
