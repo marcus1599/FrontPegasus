@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { PostService } from '../../services/post.service';
 import { Router, RouterLink } from '@angular/router';
 import { Post } from '../../models/post';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-new',
@@ -14,7 +15,7 @@ import { Post } from '../../models/post';
 
 export class NewComponent {
 
-  constructor(private router: Router,private service: PostService) {}
+  constructor(private router: Router,private service: PostService,private authService: AuthService) {}
 
   
   post: Post = {
@@ -38,6 +39,7 @@ export class NewComponent {
     if (!this.post.data_criacao) {
       this.post.data_criacao = new Date().toISOString(); // Formato ISO da data
     }
+
 
     this.service.save(this.post).subscribe(result => {
       console.log(result); 

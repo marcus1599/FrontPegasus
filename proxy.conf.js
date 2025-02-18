@@ -1,4 +1,4 @@
-const PROXY_CONFIG = [
+/*const PROXY_CONFIG = [
     {
         context:['/Postagem'],
         target:'http://localhost:8080/',
@@ -7,4 +7,4 @@ const PROXY_CONFIG = [
     }
     
 ]
-module.exports = PROXY_CONFIG;
+module.exports = PROXY_CONFIG;*/
