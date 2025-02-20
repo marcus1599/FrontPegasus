@@ -38,8 +38,16 @@ export class AuthService {
   private setUser(user: User): void {
     if (this.isLocalStorageAvailable()) {
       localStorage.setItem('user', JSON.stringify(user));
+      
     }
     this.currentUserSubject.next(user);
+  }
+  private setUserInfo(user: User): void {
+    if (this.isLocalStorageAvailable()) {
+    
+      localStorage.setItem('userinfo', JSON.stringify(user));
+    }
+   
   }
 
   private clearUser(): void {
@@ -57,7 +65,7 @@ export class AuthService {
 
   // Realiza login e retorna um Observable<User>
   login(email: string, password: string): Observable<User> {
-    return this.http.post<any>(`${this.apiUrl}/auth/login`, { email, senha: password }).pipe(
+    return this.http.post<User>(`${this.apiUrl}/auth/login`, { email, senha: password }).pipe(
       tap(data => {
         if (data && data.token) {
           // Armazena apenas o token inicialmente
@@ -68,7 +76,7 @@ export class AuthService {
       }),
       switchMap(data => this.getUserInfo(data.token)),
       tap(userInfo => {
-        this.setUser(userInfo);
+        this.setUserInfo(userInfo);
         this.router.navigate(['/']);
       }),
       catchError(err => {
@@ -123,10 +131,10 @@ export class AuthService {
   }
 
   // Realiza registro e retorna um Observable<any>
-  register(username: string, email: string, password: string, biography: string): Observable<any> {
-    const body = { username, email, senha: password, biografia: biography };
+  register(username: string, email: string, password: string, biography: string): Observable<User> {
+    const body = { username, email, password: password, biografia: biography };
     console.log('Registrando usuário:', body);
-    return this.http.post<any>(`${this.apiUrl}/auth/register`, body).pipe(
+    return this.http.post<User>(`${this.apiUrl}/auth/register`, body).pipe(
       tap(() => this.router.navigate(['/login'])),
       catchError(err => {
         console.error('Erro no registro:', err);

@@ -20,10 +20,9 @@ export class PostService {
     );
   }
   findByUserID(id: number) {
-    return this.httpclient.get<Post[]>(`${this.API}/Postagem/v1/usuario/${id}`).pipe(
+    return this.httpclient.get<Post[]>(`${this.API}/Postagem/v1/usuario/${id}`, { headers: this.getHeaders() }).pipe(
       first()
     );
-
   }
 
   // Método para salvar um post

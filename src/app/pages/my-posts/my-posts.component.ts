@@ -38,16 +38,25 @@ export class MyPostsComponent implements OnInit {
   }
 
   loadPosts() {
-    this.postService.findAll().subscribe({
-      next: (data) => {
-        this.posts = data;
-        this.totalPages = Math.ceil(this.posts.length / this.postsPerPage);
-        this.applyFilters();
-        this.cdr.markForCheck();
-      },
-      error: (err) => console.error("Erro ao carregar posts", err)
-    });
+    
+    const user = JSON.parse(localStorage.getItem('userinfo') || '{}');
+    const userId = user.id; // Assumindo que o ID do usuário está armazenado no local storage
+
+    if (userId) {
+      this.postService.findByUserID(userId).subscribe({
+        next: (data) => {
+          this.posts = data;
+          this.totalPages = Math.ceil(this.posts.length / this.postsPerPage);
+          this.applyFilters();
+          this.cdr.markForCheck();
+        },
+        error: (err) => console.error("Erro ao carregar posts", err)
+      });
+    } else {
+      console.error("User ID not found in local storage",userId);
+    }
   }
+
 
   applyFilters() {
     const startIndex = (this.currentPage - 1) * this.postsPerPage;
