@@ -40,12 +40,13 @@ export class MyPostsComponent implements OnInit {
   loadPosts() {
     
     const user = JSON.parse(localStorage.getItem('userinfo') || '{}');
-    const userId = user.id; // Assumindo que o ID do usuário está armazenado no local storage
-
+    const userId = user.id_usuario; 
     if (userId) {
       this.postService.findByUserID(userId).subscribe({
         next: (data) => {
           this.posts = data;
+          this.currentPost.usuario_id_usuario = userId;
+          this.post.usuario_id_usuario = userId;
           this.totalPages = Math.ceil(this.posts.length / this.postsPerPage);
           this.applyFilters();
           this.cdr.markForCheck();
@@ -73,7 +74,7 @@ export class MyPostsComponent implements OnInit {
   }
 
   onCreateNewPost() {
-    this.currentPost = { id_postagem: undefined, nome: '', descricao: '', usuario_id_usuario: 0, data_criacao: new Date().toISOString() };
+    this.currentPost = { id_postagem: undefined, nome: '', descricao: '', usuario_id_usuario: this.currentPost.usuario_id_usuario, data_criacao: new Date().toISOString() };
     this.isModalOpen = true;
     this.editPost = null;
     this.cdr.markForCheck();
@@ -107,7 +108,7 @@ export class MyPostsComponent implements OnInit {
         error: (err) => console.error("Erro ao atualizar post", err)
       });
     } else {
-      this.postService.save(this.currentPost).subscribe({
+      this.postService.save(this.currentPost,this.currentPost.usuario_id_usuario).subscribe({
         next: () => {
           this.loadPosts();
           this.isModalOpen = false;

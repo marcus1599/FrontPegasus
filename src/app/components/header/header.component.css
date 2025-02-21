@@ -12,7 +12,9 @@ header {
   z-index: 1000;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-
+.p{
+  color: black;
+}
 .logo img {
   width: 55px;
   border-radius: 50%;
@@ -70,6 +72,7 @@ header {
 
 .user-menu p {
   margin: 5px 0;
+  color: black
 }
 
 .user-menu button {

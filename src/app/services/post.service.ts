@@ -20,19 +20,22 @@ export class PostService {
     );
   }
   findByUserID(id: number) {
-    return this.httpclient.get<Post[]>(`${this.API}/Postagem/v1/usuario/${id}`, { headers: this.getHeaders() }).pipe(
+    return this.httpclient.get<Post[]>(`${this.API}/Postagem/v1/FindBy/${id}`, { headers: this.getHeaders() }).pipe(
       first()
     );
   }
 
   // Método para salvar um post
-  save(record: Post) {
+  save(record: Post,userId: number) {
+    
     
     if (!record.data_criacao) {
       record.data_criacao = new Date().toISOString(); // Adiciona a data de criação, se não existir
     }
     console.log(this.getHeaders());
-    return this.httpclient.post<Post>(`${this.API}/Postagem/v1/adicionar`, record, { headers: this.getHeaders() }).pipe(first());
+    console.log('Post criado:', record,userId);
+    return this.httpclient.post<Post>(`${this.API}/Postagem/v1/adicionar?userId=${userId}`,  record, { headers: this.getHeaders() }).pipe(first());
+    
   }
 
   updatePost(post: Post) {

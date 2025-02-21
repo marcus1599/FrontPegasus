@@ -41,7 +41,7 @@ export class NewComponent {
     }
 
 
-    this.service.save(this.post).subscribe(result => {
+    this.service.save(this.post,2).subscribe(result => {
       console.log(result); 
     });
     console.log('Post criado:', this.post);
