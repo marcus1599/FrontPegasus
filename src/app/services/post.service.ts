@@ -26,20 +26,13 @@ export class PostService {
   }
 
   // Método para salvar um post
-  save(record: Post,userId: number) {
-    
-    
-    if (!record.data_criacao) {
-      record.data_criacao = new Date().toISOString(); // Adiciona a data de criação, se não existir
-    }
-    console.log(this.getHeaders());
-    console.log('Post criado:', record,userId);
-    return this.httpclient.post<Post>(`${this.API}/Postagem/v1/adicionar?userId=${userId}`,  record, { headers: this.getHeaders() }).pipe(first());
-    
-  }
+  save(post: Post, userId: number) {
+  const url = `${this.API}/Postagem/v1/adicionar?userId=${userId}`;
+  return this.httpclient.post<Post>(url, post, { headers: this.getHeaders() }).pipe(first());
+}
 
   updatePost(post: Post) {
-    return this.httpclient.put<Post>(`${this.API}/Postagem/v1/Update/${post.id_postagem}`, post, { headers: this.getHeaders() }).pipe(first());
+    return this.httpclient.put<Post>(`${this.API}/Postagem/v1/Update/${post.idPostagem}`, post, { headers: this.getHeaders() }).pipe(first());
   }
 
   deletePost(id: number) {

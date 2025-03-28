@@ -22,8 +22,9 @@ export class MyPostsComponent implements OnInit {
   totalPages = 0;
   isModalOpen = false;
   editPost: Post | null = null;
-  currentPost: Post = { id_postagem: 0, nome: '', descricao: '', usuario_id_usuario: 0, data_criacao: new Date().toISOString() };
+  currentPost: Post = { idPostagem: 0, nome: '', descricao: '', usuario_id_usuario: 0, data_criacao: new Date().toISOString() };
   post: Post = {
+    idPostagem: 0,
     nome: '',
     descricao: '',
     data_criacao: '',
@@ -74,7 +75,13 @@ export class MyPostsComponent implements OnInit {
   }
 
   onCreateNewPost() {
-    this.currentPost = { id_postagem: undefined, nome: '', descricao: '', usuario_id_usuario: this.currentPost.usuario_id_usuario, data_criacao: new Date().toISOString() };
+    this.currentPost = {
+      idPostagem: undefined, // Pode ser removido ou deixado como undefined
+      nome: '',
+      descricao: '',
+      usuario_id_usuario: this.currentPost.usuario_id_usuario,
+      data_criacao: new Date().toISOString()
+    };
     this.isModalOpen = true;
     this.editPost = null;
     this.cdr.markForCheck();
@@ -89,16 +96,25 @@ export class MyPostsComponent implements OnInit {
 
   onDeletePost(post: Post) {
     if (confirm('Tem certeza que deseja excluir este post?')) {
-      if (post.id_postagem !== undefined) {
-        this.deletePost(post.id_postagem);
+      if (post.idPostagem !== undefined) {
+        this.deletePost(post.idPostagem);
       } else {
-        console.error("Post ID is undefined");
+        console.error("Post ID is undefined", post);
       }
     }
   }
 
   savePost() {
+    const user = JSON.parse(localStorage.getItem('userinfo') || '{}');
+    const userId = user.id_usuario; // Obtém o ID do usuário do localStorage
+  
+    if (!userId) {
+      console.error("User ID not found in local storage");
+      return;
+    }
+  
     if (this.editPost) {
+      // Atualizar um post existente
       this.postService.updatePost(this.currentPost).subscribe({
         next: () => {
           this.loadPosts();
@@ -108,12 +124,17 @@ export class MyPostsComponent implements OnInit {
         error: (err) => console.error("Erro ao atualizar post", err)
       });
     } else {
-      this.postService.save(this.currentPost,this.currentPost.usuario_id_usuario).subscribe({
-        next: () => {
+      // Criar um novo post
+      const newPost = { ...this.currentPost }; // Cria uma cópia do objeto
+      delete newPost.idPostagem; // Remove o campo id_postagem para evitar enviar undefined
+  
+      this.postService.save(newPost, userId).subscribe({
+        next: (createdPost) => {
+          console.log("Post criado com sucesso:", createdPost);
+          this.currentPost = createdPost; // Atualiza o currentPost com o post retornado pelo backend
           this.loadPosts();
           this.isModalOpen = false;
           this.cdr.markForCheck();
-          
         },
         error: (err) => console.error("Erro ao criar post", err, this.currentPost)
       });
@@ -126,7 +147,7 @@ export class MyPostsComponent implements OnInit {
 
   onCloseModal() {
     this.isModalOpen = false;
-    this.currentPost = { id_postagem: 0, nome: '', descricao: '', usuario_id_usuario: 0, data_criacao: new Date().toISOString() };
+    this.currentPost = { idPostagem: 0, nome: '', descricao: '', usuario_id_usuario: 0, data_criacao: new Date().toISOString() };
     this.cdr.markForCheck();
   }
 

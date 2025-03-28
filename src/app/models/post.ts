@@ -1,5 +1,5 @@
 export interface Post {
-    id_postagem?: number;
+    idPostagem?: number;
     nome: string;
     descricao: string;
     data_criacao: string; 

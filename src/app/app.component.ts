@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet, RouterModule, Routes } from '@angular/router';  // Corrigido o import do RouterModule
 import { HomeComponent } from './pages/home/home.component';
-import { NewComponent } from './pages/new/new.component';  // Adicionando NewComponent
+
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from "./components/header/header.component";
 import { FooterComponent } from "./components/footer/footer.component";
@@ -9,7 +9,7 @@ import { FooterComponent } from "./components/footer/footer.component";
 // Definindo as rotas diretamente no arquivo
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'new', component: NewComponent },
+
 ];
 
 @Component({
